@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block extracss %}
+<link href="/static/attach/login.css" rel="stylesheet">
+{% endblock %}
+
+{% block topnav %}
+<ul class="nav navbar-nav">
+    <li><a href="/home">首页</a></li>
+    <li class="active"><a href="/upload">上传</a></li>
+    <li><a href="#contact">时间线</a></li>
+</ul>
+{% endblock %}
+
+{% block sidenav %}
+<ul class="nav nav-sidebar">
+    <li class="active"><a href="#">广场 <span class="sr-only"></span></a></li>
+    <li><a style="color: #555" href="/my_share">私人</a></li>
+    <li><a style="color: #555" href="#">设置</a></li>
+    <li><a style="color: #555" href="/withdraw.jsp">注销</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row"><br><br><br>
+        <form class="form-signin" style=" max-width: 500px;" action="/Upload" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>
+                        <h2 class="form-signin-heading" style="font-size:16px">给分享起个名字吧：</h2>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="title" placeholder="Title"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2 class="form-signin-heading" style="font-size:16px">上传文件</h2>
+                    </td>
+                    <td>
+                        <input class="form-control" type="file" name="file"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2 class="form-signin-heading" style="font-size:16px">类型：</h2>
+                    </td>
+                    <td>
+                        <input type="radio" name="type" value="img">图片
+                        <input type="radio" name="type" value="vid">视频
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2 class="form-signin-heading" style="font-size:16px">选一个标签</h2>
+                    </td>
+                    <td>
+                        {% for t in tags %}
+                        <input type="radio" name="tag" value="#FUNNY">#{{ t }}
+                        {% empty %}
+                        <h2 class="form-signin-heading" style="font-size:16px">好像没有标签诶 :(</h2>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2 class="form-signin-heading" style="font-size:16px">或自定义一个标签</h2>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="customizedtag" placeholder="Title"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2 class="form-signin-heading" style="font-size:16px">添加描述</h2>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="description" placeholder="描述一下"/>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <input type="submit" class="btn btn-lg btn-warning btn-block" value="上传"/>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>入岛登记</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/attach/login.css" rel="stylesheet">
+</head>
+<body class="fullback" style="background-image: url(/static/src/signup.jpg)">
+    <div class="container">
+        <h6 class="tip">{{error}}</h6>
+        <form action="/signin" class="form-signin" method="post">{% csrf_token %}
+            <h1 class="form-signin-heading">貓島入境注册</h1>  
+            <input type="text" name="username"   class="form-control" placeholder="用户名" required autofocus>
+            <input type="password"  name="password" class="form-control" placeholder="密码" required>
+            <input  type="password" id="Passoword4check" class="form-control" placeholder="请再次输入密码" required>
+            <h5 class="tip" style="text-align: center;">岛长老张提醒您：请勿发布带有狗狗的内容</h5>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+        </form>
+    </div>
+</body>
+</html>

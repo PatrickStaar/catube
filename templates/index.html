@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>喵！</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/attach/login.css" rel="stylesheet">
+    <style type="text/css">
+
+    </style>
+</head>
+<body class="fullback" style="background-image: url(/static/src/catgif.gif)">
+<div class="container">
+    <form action="/login" class="form-signin" method="post">{% csrf_token %}
+        <h1 class="form-signin-heading ">欢迎来到·貓島</h1>
+        <h6 class="tip">{{error}}</h6>
+        <input type="text" name="username" class="form-control" placeholder="用户名" required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="密码" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> <font class="tip">记住我</font>
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button><br>
+        <a href="/signup">
+            <button class="btn btn-lg btn-default btn-block" type="button">注册</button>
+        </a>
+    </form>
+</div>
+<nav>
+    <div class="nav navbar-default navbar-fixed-bottom barplus">
+        <div class="navbar-brand">注意 | 貓島禁止犬科生物登录</div>
+    </div>
+</nav>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block topnav %}
+<ul class="nav navbar-nav">
+    <li class="active"><a href="/home">首页</a></li>
+    <li><a href="/upload">上传</a></li>
+    <li><a href="#contact">时间线</a></li>
+</ul>
+{% endblock %}
+{% block sidenav %}
+<ul class="nav nav-sidebar">
+    <li class="active"><a href="#">广场 <span class="sr-only"></span></a></li>
+    <li><a style="color: #555" href="/my_share">私人</a></li>
+    <li><a style="color: #555" href="#">设置</a></li>
+    <li><a style="color: #555" href="/withdraw.jsp">注销</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">你好{{user}}, 看看岛上的新鲜事！</h1>
+    {% for t in tag %}
+    <div class="row piclist">
+        <div class="col-sm-3 col-md-2 ">
+            <h2><a class="page-header" href="#">{{t}}</a></h2>
+            <table>
+                <tr>
+                    {% for data, static in content.t %}
+                    <td>
+                        <div style="padding-left: 3px; padding-right: 10px;">
+                            <a href="{{current.title}}">
+                                {% if data.type == 'img' %}
+                                <div style="padding: 0px; box-shadow: 0 0 8px #aaa;">
+                                    <img height=135px width=180px alt="image1" src="{{current.file}}">
+                                </div>
+                                {% else %}
+                                <div style="padding: 0px; box-shadow: 0 0 8px #aaa;">
+                                    <video width=180px height=135px controls style="padding:0px">
+                                        <source src="{{ MEDIA_URL }}{{ current.file }}" type="video/mp4">
+                                    </video>
+                                </div>
+                                {% endif %}
+                            </a>
+                        </div>
+                    </td>
+                    {% empty %}
+
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+    </div>
+    {% empty %}
+    <h2>您已到达没有猫咪的荒原</h2>
+    {% endfor %}
+</div>
+{% endblock %}

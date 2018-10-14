@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Diagrams</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+
+</head>
+<body>
+	<div id="diagram" style="background:gray;width: 800px; height:600px;"></div>
+	<script>
+		var options={
+				    chart: {
+				        type:'line'
+				    },
+				    title: {
+				        text:'Counting'
+				    },
+				    xAxis: {
+				        categories:[
+				       	{% for d in list1 %}
+                            '{{d}}',
+                        {% endfor %}
+				        ]
+				    },
+				    yAxis:{
+				        title:{
+				            text:'Population'
+				        }
+				    },
+				    series:[{
+				        name:'A',
+				        data:[
+				        {% for p in list2 %}
+                            {{p}},
+                        {% endfor %}
+				        ]
+				    }]
+				};
+
+		var chart=Highcharts.chart('diagram',options);
+	</script>
+
+</body>
+</html>
