@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block extracss %}
+
+{% block extra-link %}
 <link href="/static/attach/login.css" rel="stylesheet">
 {% endblock %}
 
 {% block topnav %}
 <ul class="nav navbar-nav">
-    <li><a href="/home">首页</a></li>
     <li class="active"><a href="/upload">上传</a></li>
     <li><a href="#contact">时间线</a></li>
 </ul>
@@ -13,17 +13,17 @@
 
 {% block sidenav %}
 <ul class="nav nav-sidebar">
-    <li class="active"><a href="#">广场 <span class="sr-only"></span></a></li>
-    <li><a style="color: #555" href="/my_share">私人</a></li>
-    <li><a style="color: #555" href="#">设置</a></li>
-    <li><a style="color: #555" href="/withdraw.jsp">注销</a></li>
+    <li><a style="color: #555"href="/home">广场</a></li>
+    <li class="active"><a style="color: #555" href="/my_sharing">私人</a></li>
+    <li><a style="color: #555" href="/settings">设置</a></li>
+    <li><a style="color: #555" href="/withdraw">注销</a></li>
 </ul>
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row"><br><br><br>
-        <form class="form-signin" style=" max-width: 500px;" action="/Upload" method="POST" enctype="multipart/form-data">
+        <form class="form-signin" style=" max-width: 500px;" action="/check_upload" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <table>
                 <tr>
@@ -57,7 +57,7 @@
                     </td>
                     <td>
                         {% for t in tags %}
-                        <input type="radio" name="tag" value="#FUNNY">#{{ t }}
+                        <input type="radio" name="tag" value="{{t.tag}}">#{{ t.tag }}
                         {% empty %}
                         <h2 class="form-signin-heading" style="font-size:16px">好像没有标签诶 :(</h2>
                         {% endfor %}
@@ -68,7 +68,7 @@
                         <h2 class="form-signin-heading" style="font-size:16px">或自定义一个标签</h2>
                     </td>
                     <td>
-                        <input class="form-control" type="text" name="customizedtag" placeholder="Title"/>
+                        <input class="form-control" type="text" name="ctag" placeholder="Title"/>
                     </td>
                 </tr>
                 <tr>
@@ -83,6 +83,9 @@
             <br>
             <input type="submit" class="btn btn-lg btn-warning btn-block" value="上传"/>
         </form>
+
     </div>
+
 </div>
+
 {% endblock %}

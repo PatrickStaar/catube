@@ -4,37 +4,52 @@
 {% endblock %}
 
 {% block global-coverage %}
-<div class="media-area"  id="media-area"></div>
+<div class="media-area" id="media-area"></div>
 <div class="media-desc"  id="media-desc"></div>
 <div id="shadow" onclick="close_window()"></div>
 {% endblock %}
 
+{% block topnav %}
+<ul class="nav navbar-nav">
+    <li class="active"><a href="/home">首页</a></li>
+    <li><a href="/upload">上传</a></li>
+    <li><a href="#contact">时间线</a></li>
+</ul>
+{% endblock %}
 
+{% block sidenav %}
+<ul class="nav nav-sidebar">
+    <li><a style="color: #555"href="/home">广场</a></li>
+    <li class="active"><a style="color: #555" href="/my_sharing">私人</a></li>
+    <li><a style="color: #555" href="/settings">设置</a></li>
+    <li><a style="color: #555" href="/withdraw">注销</a></li>
+</ul>
+{% endblock %}
 
 {% block content %}
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">你好{{user}}, 看看岛上的新鲜事！</h1>
-    {% for t, data in content.items %}
+    <h1 class="page-header">{{name}}曾经的分享：</h1>
+    {% for line in content %}
     <div class="row piclist">
         <div class="col-sm-3 col-md-2 ">
-            <h2><a class="page-header" href="/category?tag={{t}}">#{{t}}</a></h2>
+            <h2><a class="page-header" href="#"></a></h2>
             <table>
                 <tr>
-                    {% for d in data %}
+                    {% for d in line %}
                     <td>
                         <a href="javascript:void(0);" onclick="play_media('{{d.title}}','{{ MEDIA_URL}}{{d.data}}','{{d.type}}','{{d.description}}')">
                             <div style="padding-left: 3px; padding-right: 10px;">
                                 <div style="padding: 0px;box-shadow: 0 0 10px #aaa;border-radius: 6px;display:block;">
                                     {% if d.type == 'img' %}
-                                        <img id="{{d.title}}-media" height=108px width=192px  alt="image1"
+                                        <img id="{{d.title}}-media" height=108px width=192px alt="image1"
                                              src="{{MEDIA_URL}}{{d.data}}" style="border-top-left-radius: 6px;border-top-right-radius: 6px;">
                                     {% else %}
                                         <video id="{{d.title}}-media" height=108px width=192px style="border-top-left-radius: 6px;border-top-right-radius: 6px;">
                                             <source src="{{ MEDIA_URL }}{{ d.data }}" type="video/mp4">
                                         </video>
                                     {% endif %}
-                                    <h6 style="padding-bottom: 6px; padding-left: 6px; pos: center;color:black;">{{d.title}}</h6>
-                                    <a href="\profile?user={{d.owner}}"><h6 style="padding-bottom: 6px; padding-left: 6px; pos: center;color:gray;">{{d.owner}}</h6></a>
+                                    <h6 style="padding-bottom: 6px; padding-left: 6px; pos: center;">{{d.title}}</h6>
+                                    <a href="\delete?number={{d.number}}"><h6 style="padding-bottom: 6px; padding-left: 6px; pos: center;color:gray;">删除</h6></a>
                                 </div>
                             </div>
                         </a>

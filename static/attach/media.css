@@ -1,0 +1,48 @@
+.media-area{
+      position: fixed;
+
+      width:800px;
+      height:450px;
+      background:black;
+      margin:auto;
+      display: none;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 20px;
+      z-index: 3000;
+
+    }
+.media-content{
+      width:800px;
+      height:450px;
+      margin:auto;
+      border-radius: 20px;
+      padding:0px;
+    }
+.media-desc{
+      position: fixed;
+      width:800px;
+      height:50px;
+      margin:auto;
+      top: 560;
+      left: 0;
+      right: 0;
+      bottom: 50;
+
+      display: none;
+      z-index: 3000;
+    }
+#shadow{
+     position:fixed;
+     opacity: 0.9;
+     filter:alpha(opacity=50);
+     bottom:0;
+     left: 0;
+     right: 0;
+     top: 0;
+     background:black;
+     z-index: 1500;
+     display: none;
+   }

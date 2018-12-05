@@ -39,7 +39,7 @@ body {
     top: 51px;
     bottom: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 100;
     display: block;
     padding: 20px;
     overflow-x: hidden;
@@ -65,7 +65,9 @@ body {
   color: #fff;
   background-color: #ccbb00;
 }
-
+.btn-waring > .search{
+    background-color:#ccbb00;
+}
 
 /*
  * Main content
@@ -115,4 +117,10 @@ body {
 .picboxes{
 	padding-left:3px;
 	padding-right:10px;
+}
+.grid{
+    padding: 0px;
+    box-shadow: 0 0 10px #aaa;
+    border-radius: 6px;
+    display:block;
 }

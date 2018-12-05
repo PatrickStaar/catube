@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block extra-link %}
+<link href="/static/attach/login.css" rel="stylesheet">
+{% endblock %}
+
+{% block sidenav %}
+<ul class="nav nav-sidebar">
+    <li><a style="color: #555"href="/home">广场</a></li>
+    <li><a style="color: #555" href="/my_sharing">私人</a></li>
+    <li class="active"><a style="color: #555" href="/settings">设置</a></li>
+    <li><a style="color: #555" href="/withdraw">注销</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row"><br><br><br>
+        <form class="form-signin" style=" max-width: 500px;" action="/change_pass" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="form-signin-heading" style="font-size:16px">修改密码</h2>
+            <table>
+                <tr>
+                    <td><h2 class="form-signin-heading" style="font-size:16px" >输入原密码：</h2></td>
+                    <td><input class="form-control" type="password" name="ori-pass" ></td>
+                </tr>
+                <tr>
+                    <td><h2 class="form-signin-heading" style="font-size:16px">输入新密码：</h2></td>
+                    <td><input class="form-control" type="password" name="new-pass"  ></td>
+                </tr>
+                <tr>
+                    <td><h2 class="form-signin-heading" style="font-size:16px">确认新密码：</h2></td>
+                    <td><input class="form-control" type="password" name="confirm-pass" onblur="check()"  ></td>
+                </tr>
+            </table>
+            <div class="form-signin">
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="修改"/>
+            </div>
+        </form>
+        <br><br><br><br><br><br>
+        <div class="form-signin">
+            <a href="clean_content"><button class="btn btn-lg btn-warning btn-block">清空内容</button></a><br>
+         <a href="clean_account"><button class="btn btn-lg btn-danger btn-block">删除账户</button></a><br>
+        <h3 class="form-signin-heading" style="font-size:16px">{{error}}</h3>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
